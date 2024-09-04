@@ -137,7 +137,7 @@ class KnowledgeGraphAnalyzer:
 
 ```python
 def __init__(self, embeddings_path="intfloat/e5-large", llm_model="TheBloke/Mistral-7B-OpenOrca-AWQ", 
-             embeddings_config=None, csv_filename="hadenpa_lore_expanded.csv"):
+             embeddings_config=None, csv_filename="knowledge_graph.csv"):
     """
     Initialize the KnowledgeGraphAnalyzer object.
 
