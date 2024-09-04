@@ -1,3 +1,52 @@
+### Overview of the KnowledgeGraphAnalyzer Code
+
+The code defines a `KnowledgeGraphAnalyzer` class that processes text data to generate topics, builds a knowledge graph using embeddings and a large language model, and performs various analyses on the graph, including Q&A functionalities. It utilizes machine learning models to explore relationships within the graph, extract insights, and answer questions based on graph traversal and context formatting.
+
+```mermaid
+classDiagram
+    class KnowledgeGraphAnalyzer {
+        -str embeddings_path
+        -str llm_model
+        -str csv_filename
+        -dict embeddings_config
+        -Embeddings embeddings
+        -LLM llm
+        -Graph nx_graph
+        -dict id_mapping
+        +__init__(embeddings_path, llm_model, embeddings_config, csv_filename)
+        +process_text_file(file_path, max_paragraph_length, overlap) list
+        +generate_topics(paragraphs, batch_size)
+        -process_topic_batch(batch)
+        +analyze_graph()
+        -print_basic_properties()
+        -get_degree_distribution() Counter
+        -print_degree_distribution(degree_dist)
+        -centrality_analysis(top_n)
+        -clustering_analysis()
+        -component_analysis()
+        -topic_distribution(top_n, plot_n)
+        +save_embeddings(filename)
+        +load_embeddings(filename)
+        +graph_qa(question, max_path_length, num_paths) str
+        -random_walks(start_node, max_length, num_paths) list
+        -extract_path_info(paths) list
+        -generate_answer(question, path_info) str
+        -get_diverse_vector_results(question, num_results, diversity_threshold) list
+        -format_vector_results(results, max_text_length) str
+        -format_context(path_info, max_text_length) str
+        +initialize_graph()
+        -create_id_mapping() dict
+    }
+    class Embeddings
+    class LLM
+    class Graph
+
+    KnowledgeGraphAnalyzer *-- Embeddings
+    KnowledgeGraphAnalyzer *-- LLM
+    KnowledgeGraphAnalyzer *-- Graph
+
+    KnowledgeGraphAnalyzer ..> KnowledgeGraphAnalyzer : uses
+```
 
 ### 1. **Imports and Setup**
 
